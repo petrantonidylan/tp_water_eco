@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "application_wpf_water_eco/1.0.0": {
+        "runtime": {
+          "application_wpf_water_eco.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "application_wpf_water_eco/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

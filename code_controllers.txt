@@ -1,0 +1,336 @@
+using WebApplication1.Entities;
+using WebApplication1.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
+
+namespace WebApplication2.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class WatervolumeController : ControllerBase
+    {
+        private readonly DBContext DBContext;
+        public WatervolumeController(DBContext DBContext)
+        {
+            this.DBContext = DBContext;
+        }
+        /// <summary>
+        /// Definition du Web Service
+        /// </summary>
+        /// <remarks>Je manque d'imagination</remarks>
+        /// <param name="id">id du client a retourné</param>
+        /// <response code="200">client selectionné</response>
+        /// <response code="404">client introuvable pour l'id specifié</response>
+        /// <response code="500">Oops! le service est indisponible pour le moment</response>
+        [HttpGet("GetWatervolumes")]
+        public async Task<ActionResult<List<Watervolume>>> Get()
+        {
+            var List = await DBContext.Watervolumes.Select(
+            s => new Watervolume
+            {
+                WatId = s.WatId,
+                WatMaxVolume = s.WatMaxVolume,
+                WatCurrentVolume = s.WatCurrentVolume,
+                WatUnit = s.WatUnit,
+                WatInsee = s.WatInsee,
+                //Surfacecultures = s.Surfacecultures
+            }
+            ).ToListAsync();
+            if (List.Count < 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return List;
+            }
+        }
+        [HttpGet("GetWatervolumeById")]
+        public async Task<ActionResult<Watervolume>> GetWatervolumeById(int Id)
+        {
+            Watervolume Watervolume = await DBContext.Watervolumes.Select(
+            s => new Watervolume
+            {
+                WatId = s.WatId,
+                WatMaxVolume = s.WatMaxVolume,
+                WatCurrentVolume = s.WatCurrentVolume,
+                WatUnit = s.WatUnit,
+                WatInsee = s.WatInsee,
+                //Surfacecultures = s.Surfacecultures
+            })
+            .FirstOrDefaultAsync(s => s.WatId == Id);
+            if (Watervolume == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Watervolume;
+            }
+        }
+        [HttpPost("InsertWatervolume")]
+        public async Task<HttpStatusCode> InsertWatervolume(Watervolume s)
+        {
+            var entity = new Watervolume()
+            {
+                WatId = s.WatId,
+                WatMaxVolume = s.WatMaxVolume,
+                WatCurrentVolume = s.WatCurrentVolume,
+                WatUnit = s.WatUnit,
+                WatInsee = s.WatInsee,
+                //Surfacecultures = s.Surfacecultures
+            };
+            DBContext.Watervolumes.Add(entity);
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.Created;
+        }
+        [HttpPut("UpdateWatervolume")]
+        public async Task<HttpStatusCode> UpdateWatervolume(Watervolume Watervolume)
+        {
+            var entity = await DBContext.Watervolumes.FirstOrDefaultAsync(s => s.WatId == Watervolume.WatId);
+            entity.WatMaxVolume = Watervolume.WatMaxVolume;
+            entity.WatCurrentVolume = Watervolume.WatCurrentVolume;
+            entity.WatId = Watervolume.WatId;
+            entity.WatUnit = Watervolume.WatUnit;
+            entity.WatInsee = Watervolume.WatInsee;
+            //entity.Surfacecultures = Watervolume.Surfacecultures;
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.OK;
+        }
+        [HttpDelete("DeleteWatervolume/{Id}")]
+        public async Task<HttpStatusCode> DeleteWatervolume(int WatervolumeId)
+        {
+            var entity = new Watervolume()
+            {
+                WatId = WatervolumeId
+            };
+            DBContext.Watervolumes.Attach(entity);
+            DBContext.Watervolumes.Remove(entity);
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.OK;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+using WebApplication1.Entities;
+using WebApplication1.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
+
+namespace WebApplication2.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class SurfacecultureController : ControllerBase
+    {
+        private readonly DBContext DBContext;
+        public SurfacecultureController(DBContext DBContext)
+        {
+            this.DBContext = DBContext;
+        }
+        /// <summary>
+        /// Definition du Web Service
+        /// </summary>
+        /// <remarks>Je manque d'imagination</remarks>
+        /// <param name="id">id du client a retourné</param>
+        /// <response code="200">client selectionné</response>
+        /// <response code="404">client introuvable pour l'id specifié</response>
+        /// <response code="500">Oops! le service est indisponible pour le moment</response>
+        [HttpGet("GetSurfacecultures")]
+        public async Task<ActionResult<List<Surfaceculture>>> Get()
+        {
+            var List = await DBContext.Surfacecultures.Select(
+            s => new Surfaceculture
+            {
+                SurId = s.SurId,
+                SurValue = s.SurValue,
+                SurUnit = s.SurUnit,
+                WatId = s.WatId
+            }
+            ).ToListAsync();
+            if (List.Count < 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return List;
+            }
+        }
+        [HttpGet("GetSurfacecultureById")]
+        public async Task<ActionResult<Surfaceculture>> GetSurfacecultureById(int Id)
+        {
+            Surfaceculture Surfaceculture = await DBContext.Surfacecultures.Select(
+            s => new Surfaceculture
+            {
+                SurId = s.SurId,
+                SurValue = s.SurValue,
+                SurUnit = s.SurUnit,
+                WatId = s.WatId
+            })
+            .FirstOrDefaultAsync(s => s.SurId == Id);
+            if (Surfaceculture == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Surfaceculture;
+            }
+        }
+        [HttpPost("InsertSurfaceculture")]
+        public async Task<HttpStatusCode> InsertSurfaceculture(Surfaceculture s)
+        {
+            var entity = new Surfaceculture()
+            {
+                SurId = s.SurId,
+                SurValue = s.SurValue,
+                SurUnit = s.SurUnit,
+                WatId = s.WatId
+            };
+            DBContext.Surfacecultures.Add(entity);
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.Created;
+        }
+        [HttpPut("UpdateSurfaceculture")]
+        public async Task<HttpStatusCode> UpdateSurfaceculture(Surfaceculture Surfaceculture)
+        {
+            var entity = await DBContext.Surfacecultures.FirstOrDefaultAsync(s => s.SurId == Surfaceculture.SurId);
+            entity.SurValue = Surfaceculture.SurValue;
+            entity.SurUnit = Surfaceculture.SurUnit;
+            entity.WatId = Surfaceculture.WatId;
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.OK;
+        }
+        [HttpDelete("DeleteSurfaceculture/{Id}")]
+        public async Task<HttpStatusCode> DeleteSurfaceculture(int SurfacecultureId)
+        {
+            var entity = new Surfaceculture()
+            {
+                SurId = SurfacecultureId
+            };
+            DBContext.Surfacecultures.Attach(entity);
+            DBContext.Surfacecultures.Remove(entity);
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.OK;
+        }
+    }
+}
+
+
+
+
+
+
+using WebApplication1.Entities;
+using WebApplication1.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
+
+namespace WebApplication2.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class KcController : ControllerBase
+    {
+        private readonly DBContext DBContext;
+        public KcController(DBContext DBContext)
+        {
+            this.DBContext = DBContext;
+        }
+        /// <summary>
+        /// Definition du Web Service
+        /// </summary>
+        /// <remarks>Je manque d'imagination</remarks>
+        /// <param name="id">id du client a retourné</param>
+        /// <response code="200">client selectionné</response>
+        /// <response code="404">client introuvable pour l'id specifié</response>
+        /// <response code="500">Oops! le service est indisponible pour le moment</response>
+        [HttpGet("GetKcs")]
+        public async Task<ActionResult<List<Kc>>> Get()
+        {
+            var List = await DBContext.Kcs.Select(
+            s => new Kc
+            {
+                KcId = s.KcId,
+                KcName = s.KcName,
+                KcNeed = s.KcNeed
+            }
+            ).ToListAsync();
+            if (List.Count < 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return List;
+            }
+        }
+        [HttpGet("GetKcById")]
+        public async Task<ActionResult<Kc>> GetKcById(int Id)
+        {
+            Kc Kc = await DBContext.Kcs.Select(
+            s => new Kc
+            {
+                KcId = s.KcId,
+                KcName = s.KcName,
+                KcNeed = s.KcNeed
+            })
+            .FirstOrDefaultAsync(s => s.KcId == Id);
+            if (Kc == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Kc;
+            }
+        }
+        [HttpPost("InsertKc")]
+        public async Task<HttpStatusCode> InsertKc(Kc Kc)
+        {
+            var entity = new Kc()
+            {
+                KcId = Kc.KcId,
+                KcName = Kc.KcName,
+                KcNeed = Kc.KcNeed
+            };
+            DBContext.Kcs.Add(entity);
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.Created;
+        }
+        [HttpPut("UpdateKc")]
+        public async Task<HttpStatusCode> UpdateKc(Kc Kc)
+        {
+            var entity = await DBContext.Kcs.FirstOrDefaultAsync(s => s.KcId == Kc.KcId);
+            entity.KcName = Kc.KcName;
+            entity.KcNeed = Kc.KcNeed;
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.OK;
+        }
+        [HttpDelete("DeleteKc/{Id}")]
+        public async Task<HttpStatusCode> DeleteKc(int KcId)
+        {
+            var entity = new Kc()
+            {
+                KcId = KcId
+            };
+            DBContext.Kcs.Attach(entity);
+            DBContext.Kcs.Remove(entity);
+            await DBContext.SaveChangesAsync();
+            return HttpStatusCode.OK;
+        }
+    }
+}

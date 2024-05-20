@@ -1,0 +1,46 @@
+﻿<Window x:Class="application_wpf_water_eco.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:application_wpf_water_eco"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        MinWidth="800" MaxWidth="800" 
+        MinHeight="470" MaxHeight="470">
+    <Grid>
+        <TextBox x:Name="inseee" HorizontalAlignment="Left" Margin="46,211,0,0" TextWrapping="Wrap" Text="Code insee" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Height="32" Margin="46,174,0,0" TextWrapping="Wrap" Text="Rechercher une réserve d'eau :" VerticalAlignment="Top" Width="128"/>
+        <Button Content="Valider" HorizontalAlignment="Left" Margin="86,236,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="266,13,0,0" TextWrapping="Wrap" Text="Créer une réserve d'eau :" VerticalAlignment="Top"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="295,30,0,0" TextWrapping="Wrap" Text="Nom réserve :" VerticalAlignment="Top"/>
+        <TextBox x:Name="insert1" HorizontalAlignment="Left" Margin="271,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="295,76,0,0" TextWrapping="Wrap" Text="Max Volume :" VerticalAlignment="Top"/>
+        <TextBox x:Name="insert2" HorizontalAlignment="Left" Margin="272,97,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="295,121,0,0" TextWrapping="Wrap" Text="Volume actuel :" VerticalAlignment="Top"/>
+        <TextBox x:Name="insert3" HorizontalAlignment="Left" Margin="272,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="299,165,0,0" TextWrapping="Wrap" Text="Code insee :" VerticalAlignment="Top"/>
+        <TextBox x:Name="insert5" HorizontalAlignment="Left" Margin="271,186,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+        <Button Content="Créer une réserve" HorizontalAlignment="Left" Margin="284,212,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+        <ListBox x:Name="ListKc" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,34,590,299"/>
+        <TextBlock HorizontalAlignment="Left" Margin="79,10,0,0" TextWrapping="Wrap" Text="Liste de Kc :" VerticalAlignment="Top"/>
+        <ComboBox x:Name="Combo" HorizontalAlignment="Left" Margin="445,47,0,0" VerticalAlignment="Top" Width="120"></ComboBox>
+        <ComboBox x:Name="Combo2" HorizontalAlignment="Left" Margin="445,84,0,0" VerticalAlignment="Top" Width="120"></ComboBox>
+        <TextBlock HorizontalAlignment="Left" Margin="445,21,0,0" TextWrapping="Wrap" Text="Calcul consommation :" VerticalAlignment="Top"/>
+        <Button Content="Calculer" HorizontalAlignment="Left" Margin="485,114,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
+        <TextBlock x:Name="repConso" HorizontalAlignment="Left" Margin="445,144,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="205" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="626,10,0,0" TextWrapping="Wrap" Text="Autonomie d'arrosage :" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboAuto1" HorizontalAlignment="Left" Margin="630,34,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="comboAuto2" HorizontalAlignment="Left" Margin="630,62,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="comboAuto3" HorizontalAlignment="Left" Margin="630,90,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="resultAuto" HorizontalAlignment="Left" Margin="630,148,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="175" Width="120"/>
+        <Button Content="Autonomie" HorizontalAlignment="Left" Margin="659,117,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
+
+    </Grid>
+</Window>

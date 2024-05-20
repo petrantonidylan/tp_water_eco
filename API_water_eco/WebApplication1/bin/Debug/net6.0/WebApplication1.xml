@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApplication1</name>
+    </assembly>
+    <members>
+        <member name="M:WebApplication1.Controllers.KcController.Get">
+            <summary>
+            Definition du Web Service
+            </summary>
+            <remarks>Je manque d'imagination</remarks>
+            <param name="id">id du Kc a retourné</param>
+            <response code="200">Kc selectionné</response>
+            <response code="404">Kc introuvable pour l'id specifié</response>
+            <response code="500">Oops! le service est indisponible pour le moment</response>
+        </member>
+        <member name="M:WebApplication2.Controllers.SurfacecultureController.Get">
+            <summary>
+            Definition du Web Service
+            </summary>
+            <remarks>Je manque d'imagination</remarks>
+            <param name="id">id du client a retourné</param>
+            <response code="200">client selectionné</response>
+            <response code="404">client introuvable pour l'id specifié</response>
+            <response code="500">Oops! le service est indisponible pour le moment</response>
+        </member>
+        <member name="M:WebApplication2.Controllers.WatervolumeController.Get">
+            <summary>
+            Definition du Web Service
+            </summary>
+            <remarks>Je manque d'imagination</remarks>
+            <param name="id">id du client a retourné</param>
+            <response code="200">client selectionné</response>
+            <response code="404">client introuvable pour l'id specifié</response>
+            <response code="500">Oops! le service est indisponible pour le moment</response>
+            
+        </member>
+    </members>
+</doc>
