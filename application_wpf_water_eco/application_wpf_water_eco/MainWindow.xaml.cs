@@ -155,7 +155,7 @@ namespace application_wpf_water_eco
                 }
                 else
                 {
-                    water.Text = "insee inconnu";
+                    repConso.Text = "insee inconnu";
                 }
             }
         }
@@ -177,7 +177,7 @@ namespace application_wpf_water_eco
                 }
                 else
                 {
-                    water.Text = "Erreur.";
+                    resultAuto.Text = "Erreur.";
                 }
             }
         }

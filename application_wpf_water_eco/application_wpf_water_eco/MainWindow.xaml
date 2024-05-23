@@ -41,6 +41,7 @@
         <ComboBox x:Name="comboAuto3" HorizontalAlignment="Left" Margin="630,90,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="resultAuto" HorizontalAlignment="Left" Margin="630,148,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="175" Width="120"/>
         <Button Content="Autonomie" HorizontalAlignment="Left" Margin="659,117,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
+        <TextBlock x:Name="water" HorizontalAlignment="Left" Margin="42,310,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="81" Width="128"/>
 
     </Grid>
 </Window>
